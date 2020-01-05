@@ -16,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/chefportfolio3/backend/issues"
   },
-  "homepage": "https://github.com/chefportfolio3/backend#readme"
+  "homepage": "https://github.com/chefportfolio3/backend#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.20.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
 }
