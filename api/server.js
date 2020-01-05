@@ -18,7 +18,7 @@ server.get('/', (req, res) => {
 });
 
 server.use('/api/auth', authRouter);
-// server.use('/api/users', userRouter);
+server.use('/api/users', userRouter);
 // server.use('/api/recipes', recipesRouter);
 
 module.exports = server;

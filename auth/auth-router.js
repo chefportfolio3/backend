@@ -53,5 +53,11 @@ function generateToken(username) {
 	};
 	return jwt.sign(payload, secret, options);
 }
+router.get('/logout', (req, res) => {
+	req.logout();
+	res.status(200).json({
+		message: 'User Log out !'
+	});
+});
 
 module.exports = router;
