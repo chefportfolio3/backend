@@ -17,7 +17,7 @@ server.get('/', (req, res) => {
 	res.status(200).json({ api: 'running', environment: process.env.DB_ENV });
 });
 
-// server.use('/api/auth', authRouter);
+server.use('/api/auth', authRouter);
 // server.use('/api/users', userRouter);
 // server.use('/api/recipes', recipesRouter);
 
