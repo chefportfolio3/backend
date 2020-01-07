@@ -43,9 +43,10 @@ router.post('/login', (req, res) => {
 		});
 });
 
-function generateToken(username) {
+function generateToken(user) {
 	const payload = {
-		username
+		subject: user.id,
+		username: user.username
 	};
 	const secret = process.env.JWT_SECRET || 'is it secret, is it safe?';
 	const options = {
