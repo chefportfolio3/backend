@@ -4,7 +4,7 @@ const helmet = require('helmet');
 require('dotenv').config();
 
 const authRouter = require('../auth/auth-router.js');
-// const userRouter = require('../users/users-router.js');
+const userRouter = require('../users/users-router.js');
 const recipesRouter = require('../recipes/recipe-router');
 
 const server = express();
@@ -18,7 +18,7 @@ server.get('/', (req, res) => {
 });
 
 server.use('/api/auth', authRouter);
-// server.use('/api/users', userRouter);
+server.use('/api/users', userRouter);
 server.use('/api/recipes', recipesRouter);
 
 module.exports = server;

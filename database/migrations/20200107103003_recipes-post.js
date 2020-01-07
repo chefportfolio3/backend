@@ -7,7 +7,7 @@ exports.up = function(knex) {
 				tb.increments();
 				tb.string('chef_name', 255);
 				tb.string('recipe_name', 255);
-				tb.String('recipe_img', 255);
+				tb.string('recipe_img', 255);
 			})
 
 			//ingredients table

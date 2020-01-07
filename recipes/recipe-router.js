@@ -3,6 +3,7 @@ const router = express.Router();
 
 const db = require('../database/dbConfig.js');
 const restricted = require('../auth/auth-middleware');
+const Recipes = require('./recipe-model');
 
 router.get('/myrecipe', restricted, (req, res) => {
 	db('recipes')
@@ -16,9 +17,8 @@ router.get('/myrecipe', restricted, (req, res) => {
 		});
 });
 
-router.get('/all', (req, res) => {
-	db('recipes')
-		.returning('id')
+router.get('/', (req, res) => {
+	Recipes.getAllRecipes()
 		.then(recipes => {
 			res.status(200).json(recipes);
 		})
@@ -27,13 +27,11 @@ router.get('/all', (req, res) => {
 		});
 });
 
-router.get('/:id', restricted, (req, res) => {
+router.get('/:id', (req, res) => {
 	const { id } = req.params;
 
-	db('recipes')
-		.returning('id')
-		.where({ id, user_id: req.decodedToken.subject })
-		.first()
+	Recipes.findPostById()
+
 		.then(recipe => {
 			if (recipe) {
 				res.status(200).json(recipe);
@@ -50,13 +48,13 @@ router.get('/:id', restricted, (req, res) => {
 		});
 });
 
-router.post('/', restricted, (req, res) => {
+router.post('/', (req, res) => {
 	const recipe = req.body;
 
 	if (!recipe.chef_name) {
 		res.status(400).json({ error: 'Please provide a chef name for the post.' });
 	} else {
-		recipe.user_id = req.decodedToken.subject;
+		// recipe.user_id = req.decodedToken.subject;
 		db('recipes')
 			.returning('id')
 			.insert(recipe)
@@ -121,7 +119,7 @@ router.delete('/:id', restricted, (req, res) => {
 		});
 });
 
-router.get('/:id/ingredient', (req, res) => {
+router.get('/:id/ingredients', (req, res) => {
 	const id = req.params.id;
 	Recipes.getIngredients(id)
 		.then(list => {
@@ -135,7 +133,7 @@ router.get('/:id/ingredient', (req, res) => {
 		})
 		.catch(err => {
 			res.status(400).json({
-				Error: 'Could Not Find The ShoppingLists'
+				Error: 'Could Not Find The ingredients'
 			});
 		});
 });

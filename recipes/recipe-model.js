@@ -5,7 +5,8 @@ module.exports = {
 	insert,
 	addRecipe,
 	getIngredients,
-	getInstructions
+	getInstructions,
+	findPostById
 };
 
 function getAllRecipes() {
@@ -24,6 +25,7 @@ async function addRecipe(recipe) {
 
 function findPostById(id) {
 	return db('recipes')
+		.select('*')
 		.where({ id })
 		.first();
 }
