@@ -1,7 +1,7 @@
 # backend
 Repo for the BackEnd team only. 
 
-url: localhost:5432
+url: https://mychefportfolio.herokuapp.com/
 
 |       endpoint       |    METHOD  | NOTES                            |
 |----------------------|------------|----------------------------------|
